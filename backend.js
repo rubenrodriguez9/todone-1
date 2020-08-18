@@ -62,16 +62,3 @@ const priority1Only = function(todos) {
 }
 
 
-module.exports = {
-  getTodoName,
-  getPriority,
-  isComplete,
-  isHighPriority,
-  names,
-  priorities,
-  namesAndPriorities,
-  justNotComplete,
-  justComplete,
-  priority2Only,
-  priority1Only,
-}

@@ -11,6 +11,7 @@
 
 
 // Given a todo object, adds an item to our todo list.
+const addToDo = obj => todos.push(arr)
 
 
 // Given a todo object, put it on the DOM. This is a pretty big function!
@@ -18,24 +19,35 @@ const printTodo = function(todo) {
   // Use `document.createElement` to make an <li>, and set its text (preferably using `.innerText`) to be our given object's text field.
 
 
+let child = document.createElement('li')
+
+
+  child.innerText = todo.text
 
   // Query the ol and put it in a variable.
+
+  let list = document.querySelector("ol")
 
 
 
   // Append the li we made to the ul as the last child using `.appendChild`. If this isn't working for you, check what is being appended to what!
-
+  list.appendChild(child)
 
 
   // Give our new li a `todo-item` class using `classList`.
-
+  child.classList.add('todo-item')
+  
 
 
   // Give our new li an id that is the object's id. This is so that we have a matching relationship between todo node elements and their corresponding objects.
+  child.setAttribute('id', 'todos')
 
-
-
+console.log(child)
   // Give the li a `complete` class if the todo object indicates it was complete already.
+  if(todo.complete === true){
+    child.classList.add('complete')
+
+  }
 
 
 
@@ -44,28 +56,51 @@ const printTodo = function(todo) {
   // This is quite a challenge, so feel free to come back to this one at the end!
   // You'll want to add an event listener to the `li` you just made, and in that event listener function, toggle its completeness on both the DOM (using `classList.toggle`) and in our global array (toggling its completeness property).
   // The hard part will be finding it on the DOM and finding it in our array. We can tell what `li` was clicked using the `event` property passed in, and we can tell what object it goes to using the node element's id that we added above.
-
-
+ 
 }
 
+let ruben = {
+  text: `make doctor's appointment`,
+  complete: true,
+  priority: 2,
+  id: 1,
+}
+
+printTodo(ruben)
 
 // Print all todos. Loop through our todos array and call the above function on each one.
-
-
+let displayToDos = function() {
+  for(let i = 0; i < todos.length;i++){
+  printTodo(todos[i])
+}
+}
 
 // Call the above function immediately after you define it, so our todos array gets printed out on page load. This is the only time we're calling a function, the rest is event listeners and helper functions that run when the user interacts with the DOM!
-
+displayToDos()
 
 
 
 // Clear all todos from the DOM. This is a great helper function for refreshing our todos.
 // Test it in the console and see if your lis disappear!
 
+let clearTodos = function(){
+  const list = document.querySelectorAll('.todo-item');
+  for(const item of list){
+    item.remove()
+  }
+  
+
+}
+
+
+
+
 
 
 // Refresh our page by calling each of the two above functions. Since printing all todos checks our todos array, if we make a change to our todos array, we can make our DOM match by simply clearing it and repopulating it according to our todos' new state.
 
 
+displayToDos();
 
 
 /*
